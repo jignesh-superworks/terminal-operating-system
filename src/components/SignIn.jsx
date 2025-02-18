@@ -1,7 +1,7 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 
-// const CLIENT_URL = "http://172.25.15.103:3000";
+// const CLIENT_URL = "http://172.25.15.100:3000";
 const CLIENT_URL = "https://api.superworks.net:3101";
 const CLIENT_ID = "bfVwBCVJDdIRZ1oMBT-vr-qV";
 
@@ -50,7 +50,8 @@ const SignIn = () => {
         .then((data) => {
           console.log("Success:", data);
           document.cookie = `auth_token=${data.access_token}; path=/`;
-          navigate('/dashboard');
+          navigate('/dashboard', { replace: true });
+        //   navigate(location.pathname, { replace: true });
         })
         .catch((error) => {
           window.location.href =
@@ -75,7 +76,8 @@ const SignIn = () => {
 
   return (
     <div className="sign-in-content">
-      <h1>Sign in to Terminal Operating System</h1>
+      <h4>Sign in to</h4>
+      <h1>Terminal Operating System</h1>
 
       <form className="sign-in-form">
         <div className="input-group">
@@ -100,7 +102,7 @@ const SignIn = () => {
           <a href="#">Forgot password?</a>
         </div>
 
-        <button type="submit" className="get-started-btn">
+        <button type="button" className="get-started-btn">
           Login
         </button>
       </form>
